@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIM_りゅうすけ SKILLS｜仕事に使えるAIスキル一覧</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0f26;
+    --ink:#f1ecdd;
+    --sub:#9aa2c4;
+    --card:#111a3d;
+    --card-border:rgba(224,184,76,0.22);
+    --accent:#e0b84c;
+    --accent-2:#f4d888;
+    --soon-bg:#16204a;
+    --soon-text:#b89b53;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:"Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+  }
+  a{color:inherit;text-decoration:none;}
+
+  header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:20px 40px;
+    border-bottom:1px solid var(--card-border);
+    position:sticky;
+    top:0;
+    background:var(--bg);
+    z-index:10;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:700;
+    font-size:15px;
+  }
+  .logo-mark{
+    width:28px;height:28px;border-radius:50%;
+    background:var(--accent);color:var(--bg);
+    display:flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:900;
+  }
+  nav{display:flex;align-items:center;gap:24px;font-size:13px;}
+  nav a{color:var(--sub);}
+  .btn-request{
+    border:1px solid var(--ink);
+    border-radius:999px;
+    padding:8px 16px;
+    font-size:13px;
+    font-weight:500;
+  }
+
+  main{max-width:1200px;margin:0 auto;padding:56px 40px 100px;}
+
+  .eyebrow{
+    font-size:12px;
+    letter-spacing:.12em;
+    color:var(--sub);
+    font-weight:700;
+    margin-bottom:10px;
+  }
+  .hero-row{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:16px;
+    margin-bottom:28px;
+  }
+  h1{
+    font-size:40px;
+    margin:0;
+    font-weight:900;
+    line-height:1.3;
+  }
+  .count{
+    font-size:22px;
+    font-weight:900;
+    color:var(--accent);
+  }
+  .count span{
+    font-size:12px;
+    font-weight:700;
+    color:var(--sub);
+    margin-left:4px;
+  }
+
+  .tabs{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:36px;
+  }
+  .tab{
+    padding:9px 18px;
+    border-radius:999px;
+    border:1px solid var(--card-border);
+    background:var(--card);
+    font-size:13px;
+    font-weight:500;
+    cursor:pointer;
+    color:var(--sub);
+  }
+  .tab.active{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:var(--bg);
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+  }
+  @media (max-width:900px){ .grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:600px){ .grid{grid-template-columns:1fr;} header{padding:16px 20px;} main{padding:36px 20px 80px;} h1{font-size:28px;} }
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--card-border);
+    border-radius:16px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .card:hover{ transform:translateY(-3px); box-shadow:0 10px 24px rgba(224,184,76,.15); border-color:rgba(224,184,76,0.5); }
+
+  .thumb{
+    height:150px;
+    background:
+      repeating-linear-gradient(135deg, #16204a 0 12px, #101836 12px 24px);
+    position:relative;
+    display:flex;
+    align-items:flex-start;
+    justify-content:flex-start;
+  }
+  .badge-soon{
+    margin:12px;
+    background:var(--soon-bg);
+    color:var(--soon-text);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.06em;
+    padding:5px 10px;
+    border-radius:6px;
+  }
+
+  .card-body{
+    padding:18px 18px 20px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    flex:1;
+  }
+  .tag-row{display:flex;gap:6px;align-items:center;}
+  .tag{
+    font-size:11px;
+    font-weight:700;
+    color:var(--accent);
+    background:rgba(224,184,76,0.14);
+    padding:3px 9px;
+    border-radius:5px;
+  }
+  .card h3{
+    margin:0;
+    font-size:17px;
+    font-weight:700;
+    color:#c3c8e6;
+  }
+  .card p{
+    margin:0;
+    font-size:12.5px;
+    line-height:1.7;
+    color:var(--sub);
+    flex:1;
+  }
+  .card-footer{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-top:1px solid var(--card-border);
+    padding-top:12px;
+    font-size:11px;
+    color:var(--soon-text);
+  }
+
+  footer{
+    border-top:1px solid var(--card-border);
+    padding:28px 40px;
+    text-align:center;
+    font-size:12px;
+    color:var(--sub);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-mark">A</div>
+    AIM_りゅうすけ SKILLS
+  </div>
+  <nav>
+    <a href="#">使い方</a>
+    <a href="#" class="btn-request">スキルをリクエスト</a>
+  </nav>
+</header>
+
+<main>
+  <div class="eyebrow">SKILL 配布ページ</div>
+  <div class="hero-row">
+    <h1>AIM_りゅうすけ SKILLSの<br>AIスキル一覧</h1>
+    <div class="count">10 <span>SKILLS</span></div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" data-filter="all">すべて</div>
+    <div class="tab" data-filter="video">動画編集</div>
+    <div class="tab" data-filter="sales">営業・提案</div>
+    <div class="tab" data-filter="schedule">スケジュール管理</div>
+    <div class="tab" data-filter="marketing">マーケティング</div>
+    <div class="tab" data-filter="ops">業務効率化</div>
+  </div>
+
+  <!--
+    ============================================================
+    ▼スキルが公開できるようになったら、下のカードを1枚ずつ差し替えてください。
+    差し替え箇所は以下の5点だけです（詳しくは同梱の「カード追加ガイド.md」参照）。
+      1. data-filter の値（カテゴリに合わせる）
+      2. .badge-soon → 「無料」「有料」などの価格バッジに変更
+      3. .tag のカテゴリ名
+      4. <h3> のスキル名
+      5. <p> の説明文（1〜2文）
+      6. card-footer の「準備中」→ バージョン表記 ＋「詳しく見る →」リンク
+    ============================================================
+  -->
+  <div class="grid" id="grid">
+
+    <div class="card" data-filter="video">
+      <div class="thumb"><span class="badge-soon">COMING SOON</span></div>
+      <div class="card-body">
+        <div class="tag-row"><span class="tag">動画編集</span></div>
+        <h3>スキル準備中 01</h3>
+        <p>近日公開予定です。内容が決まり次第、このカードを差し替えます。</p>
+        <div class="card-footer"><span>準備中</span><span></span></div>
+      </div>
+    </div>
+
+    <div class="card" data-filter="sales">
+      <div class="thumb"><span class="badge-soon">COMING SOON</span></div>
+      <div class="card-body">
+        <div class="tag-row"><span class="tag">営業・提案</span></div>
+        <h3>スキル準備中 02</h3>
+        <p>近日公開予定です。内容が決まり次第、このカードを差し替えます。</p>
+        <div class="card-footer"><span>準備中</span><span></span></div>
+      </div>
+    </div>
+
+    <div class="card" data-filter="schedule">
+      <div class="thumb"><span class="badge-soon">COMING SOON</span></div>
+      <div class="card-body">
+        <div class="tag-row"><span class="tag">スケジュール管理</span></div>
+        <h3>スキル準備中 03</h3>
+        <p>近日公開予定です。内容が決まり次第、このカードを差し替えます。</p>
+        <div class="card-footer"><span>準備中</span><span></span></div>
+      </div>
+    </div>
+
+    <div class="card" data-filter="marketing">
+      <div class="thumb"><span class="badge-soon">COMING SOON</span></div>
+      <div class="card-body">
+        <div class="tag-row"><span class="tag">マーケティング</span></div>
+        <h3>スキル準備中 04</h3>
+        <p>近日公開予定です。内容が決まり次第、このカードを差し替えます。</p>
+        <div class="card-footer"><span>準備中</span><span></span></div>
+      </div>
+    </div>
+
+    <div class="card" data-filter="ops">
+      <div class="thumb"><span class="badge-soon">COMING SOON</span></div>
+      <div class="card-body">
+        <div class="tag-row"><span class="tag">業務効率化</span></div>
+        <h3>スキル準備中 05</h3>
+        <p>近日公開予定です。内容が決まり次第、このカードを差し替えます。</p>
+        <div class="card-footer"><span>準備中</span><span></span></div>
+      </div>
+    </div>
+
+    <div class="card" data-filter="video">
+      <div class="thumb"><span class="badge-soon">COMING SOON</span></div>
+      <div class="card-body">
+        <div class="tag-row"><span class="tag">動画編集</span></div>
+        <h3>スキル準備中 06</h3>
+        <p>近日公開予定です。内容が決まり次第、このカードを差し替えます。</p>
+        <div class="card-footer"><span>準備中</span><span></span></div>
+      </div>
+    </div>
+
+    <div class="card" data-filter="sales">
+      <div class="thumb"><span class="badge-soon">COMING SOON</span></div>
+      <div class="card-body">
+        <div class="tag-row"><span class="tag">営業・提案</span></div>
+        <h3>スキル準備中 07</h3>
+        <p>近日公開予定です。内容が決まり次第、このカードを差し替えます。</p>
+        <div class="card-footer"><span>準備中</span><span></span></div>
+      </div>
+    </div>
+
+    <div class="card" data-filter="schedule">
+      <div class="thumb"><span class="badge-soon">COMING SOON</span></div>
+      <div class="card-body">
+        <div class="tag-row"><span class="tag">スケジュール管理</span></div>
+        <h3>スキル準備中 08</h3>
+        <p>近日公開予定です。内容が決まり次第、このカードを差し替えます。</p>
+        <div class="card-footer"><span>準備中</span><span></span></div>
+      </div>
+    </div>
+
+    <div class="card" data-filter="marketing">
+      <div class="thumb"><span class="badge-soon">COMING SOON</span></div>
+      <div class="card-body">
+        <div class="tag-row"><span class="tag">マーケティング</span></div>
+        <h3>スキル準備中 09</h3>
+        <p>近日公開予定です。内容が決まり次第、このカードを差し替えます。</p>
+        <div class="card-footer"><span>準備中</span><span></span></div>
+      </div>
+    </div>
+
+    <div class="card" data-filter="ops">
+      <div class="thumb"><span class="badge-soon">COMING SOON</span></div>
+      <div class="card-body">
+        <div class="tag-row"><span class="tag">業務効率化</span></div>
+        <h3>スキル準備中 10</h3>
+        <p>近日公開予定です。内容が決まり次第、このカードを差し替えます。</p>
+        <div class="card-footer"><span>準備中</span><span></span></div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>© AIM_りゅうすけ SKILLS</footer>
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const cards = document.querySelectorAll('.card');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const filter = tab.dataset.filter;
+      cards.forEach(card => {
+        card.style.display = (filter === 'all' || card.dataset.filter === filter) ? '' : 'none';
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
