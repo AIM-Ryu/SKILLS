@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIM_りゅうすけ SKILLS｜仕事に使えるAIスキル一覧</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0f26;
+    --ink:#f1ecdd;
+    --sub:#9aa2c4;
+    --card:#111a3d;
+    --card-border:rgba(224,184,76,0.22);
+    --accent:#e0b84c;
+    --accent-2:#f4d888;
+    --soon-bg:#16204a;
+    --soon-text:#b89b53;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:"Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+  }
+  a{color:inherit;text-decoration:none;}
+
+  header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:20px 40px;
+    border-bottom:1px solid var(--card-border);
+    position:sticky;
+    top:0;
+    background:var(--bg);
+    z-index:10;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:700;
+    font-size:15px;
+  }
+  .logo-mark{
+    width:28px;height:28px;border-radius:50%;
+    background:var(--accent);color:var(--bg);
+    display:flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:900;
+  }
+  nav{display:flex;align-items:center;gap:24px;font-size:13px;}
+  nav a{color:var(--sub);}
+  .btn-request{
+    border:1px solid var(--ink);
+    border-radius:999px;
+    padding:8px 16px;
+    font-size:13px;
+    font-weight:500;
+  }
+
+  main{max-width:1200px;margin:0 auto;padding:56px 40px 100px;}
+
+  .eyebrow{
+    font-size:12px;
+    letter-spacing:.12em;
+    color:var(--sub);
+    font-weight:700;
+    margin-bottom:10px;
+  }
+  .hero-row{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:16px;
+    margin-bottom:28px;
+  }
+  h1{
+    font-size:40px;
+    margin:0;
+    font-weight:900;
+    line-height:1.3;
+  }
+  .count{
+    font-size:22px;
+    font-weight:900;
+    color:var(--accent);
+  }
+  .count span{
+    font-size:12px;
+    font-weight:700;
+    color:var(--sub);
+    margin-left:4px;
+  }
+
+  .tabs{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:36px;
+  }
+  .tab{
+    padding:9px 18px;
+    border-radius:999px;
+    border:1px solid var(--card-border);
+    background:var(--card);
+    font-size:13px;
+    font-weight:500;
+    cursor:pointer;
+    color:var(--sub);
+  }
+  .tab.active{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:var(--bg);
+  }
+
+  .hero-download{
+    display:inline-block;
+    background:var(--accent);
+    color:var(--bg);
+    font-weight:700;
+    font-size:14px;
+    padding:12px 24px;
+    border-radius:999px;
+    margin-bottom:36px;
+  }
+  .hero-download:hover{ background:var(--accent-2); }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+  }
+  @media (max-width:900px){ .grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:600px){ .grid{grid-template-columns:1fr;} header{padding:16px 20px;} main{padding:36px 20px 80px;} h1{font-size:28px;} }
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--card-border);
+    border-radius:16px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .card:hover{ transform:translateY(-3px); box-shadow:0 10px 24px rgba(224,184,76,.15); border-color:rgba(224,184,76,0.5); }
+
+  .thumb{
+    height:150px;
+    background:
+      repeating-linear-gradient(135deg, #16204a 0 12px, #101836 12px 24px);
+    position:relative;
+    display:flex;
+    align-items:flex-start;
+    justify-content:flex-start;
+  }
+  .badge-soon{
+    margin:12px;
+    background:var(--soon-bg);
+    color:var(--soon-text);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.06em;
+    padding:5px 10px;
+    border-radius:6px;
+  }
+
+  .card-body{
+    padding:18px 18px 20px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    flex:1;
+  }
+  .tag-row{display:flex;gap:6px;align-items:center;}
+  .tag{
+    font-size:11px;
+    font-weight:700;
+    color:var(--accent);
+    background:rgba(224,184,76,0.14);
+    padding:3px 9px;
+    border-radius:5px;
+  }
+  .card h3{
+    margin:0;
+    font-size:17px;
+    font-weight:700;
+    color:#c3c8e6;
+  }
+  .card p{
+    margin:0;
+    font-size:12.5px;
+    line-height:1.7;
+    color:var(--sub);
+    flex:1;
+  }
+  .card-footer{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-top:1px solid var(--card-border);
+    padding-top:12px;
+    font-size:11px;
+    color:var(--soon-text);
+  }
+
+  .setup{
+    margin-top:64px;
+    padding:40px;
+    background:var(--card);
+    border:1px solid var(--card-border);
+    border-radius:16px;
+  }
+  .setup h2{
+    font-size:26px;
+    margin:6px 0 24px;
+    font-weight:900;
+  }
+  .setup-steps{
+    margin:0 0 28px;
+    padding-left:20px;
+    display:grid;
+    gap:14px;
+    font-size:13px;
+    line-height:1.8;
+    color:var(--sub);
+  }
+  .setup-steps strong{ color:var(--ink); }
+  .setup-steps code{
+    background:rgba(224,184,76,0.14);
+    color:var(--accent);
+    padding:2px 6px;
+    border-radius:4px;
+    font-size:12px;
+  }
+  .setup-note{
+    margin-top:14px;
+    font-size:12px;
+    color:var(--soon-text);
+  }
+
+  footer{
+    border-top:1px solid var(--card-border);
+    padding:28px 40px;
+    text-align:center;
+    font-size:12px;
+    color:var(--sub);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-mark">A</div>
+    AIM_りゅうすけ SKILLS
+  </div>
+  <nav>
+    <a href="#setup">使い方</a>
+    <a href="#setup" class="btn-request">無料ダウンロード</a>
+  </nav>
+</header>
+
+<main>
+  <div class="eyebrow">SKILL 配布ページ</div>
+  <div class="hero-row">
+    <h1>AIM_りゅうすけ SKILLSの<br>AIスキル一覧</h1>
+    <div class="count">10 <span>SKILLS</span></div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" data-filter="all">すべて</div>
+    <div class="tab" data-filter="sales">営業・提案</div>
+    <div class="tab" data-filter="video">動画編集</div>
+    <div class="tab" data-filter="schedule">スケジュール管理</div>
+    <div class="tab" data-filter="ops">業務効率化</div>
+  </div>
+
+  <a href="#setup" class="hero-download">無料ダウンロード ↓</a>
+
+  <div class="grid" id="grid">
+
+    <div class="card" data-filter="sales">
+      <div class="thumb"><span class="badge-soon">無料</span></div>
+      <div class="card-body">
+        <div class="tag-row"><span class="tag">営業・提案</span></div>
+        <h3>① 営業リサーチAI</h3>
+        <p>URL 1本渡すと、営業に必要な情報と「攻め方3案」が出ます。</p>
+        <div class="card-footer"><span>Claude Code / Codex</span><span></span></div>
+      </div>
+    </div>
+
+    <div class="card" data-filter="sales">
+      <div class="thumb"><span class="badge-soon">無料</span></div>
+      <div class="card-body">
+        <div class="tag-row"><span class="tag">営業・提案</span></div>
+        <h3>② 営業文たたき台AI</h3>
+        <p>実績と単価を毎回貼らなくていい。添削もできます。</p>
+        <div class="card-footer"><span>Claude Code / Codex</span><span></span></div>
+      </div>
+    </div>
+
+    <div class="card" data-filter="sales">
+      <div class="thumb"><span class="badge-soon">無料</span></div>
+      <div class="card-body">
+        <div class="tag-row"><span class="tag">営業・提案</span></div>
+        <h3>③ 営業資料作成AI</h3>
+        <p>ポートフォリオと提案資料をHTMLで作ります。実績ゼロでも作れます。</p>
+        <div class="card-footer"><span>Claude Code / Codex</span><span></span></div>
+      </div>
+    </div>
+
+    <div class="card" data-filter="sales">
+      <div class="thumb"><span class="badge-soon">無料</span></div>
+      <div class="card-body">
+        <div class="tag-row"><span class="tag">営業・提案</span></div>
+        <h3>④ 商談準備・議事録AI</h3>
+        <p>聞くことリスト → 議事録 → 送る確認メールまで作ります。</p>
+        <div class="card-footer"><span>Claude Code / Codex</span><span></span></div>
+      </div>
+    </div>
+
+    <div class="card" data-filter="ops">
+      <div class="thumb"><span class="badge-soon">無料</span></div>
+      <div class="card-body">
+        <div class="tag-row"><span class="tag">業務効率化</span></div>
+        <h3>⑤ 案件要件整理AI</h3>
+        <p>決まっていない条件を洗い出して、確認文を1通にまとめます。</p>
+        <div class="card-footer"><span>Claude Code / Codex</span><span></span></div>
+      </div>
+    </div>
+
+    <div class="card" data-filter="schedule">
+      <div class="thumb"><span class="badge-soon">無料</span></div>
+      <div class="card-body">
+        <div class="tag-row"><span class="tag">スケジュール管理</span></div>
+        <h3>⑥ 納期管理AI</h3>
+        <p>納品日から逆算して、カレンダーに入れられる形にします。</p>
+        <div class="card-footer"><span>Claude Code / Codex</span><span></span></div>
+      </div>
+    </div>
+
+    <div class="card" data-filter="ops">
+      <div class="thumb"><span class="badge-soon">無料</span></div>
+      <div class="card-body">
+        <div class="tag-row"><span class="tag">業務効率化</span></div>
+        <h3>⑦ フォルダ整理AI</h3>
+        <p>散らかった素材を案件フォルダに分類・命名します。</p>
+        <div class="card-footer"><span>Claude Code / Codex</span><span></span></div>
+      </div>
+    </div>
+
+    <div class="card" data-filter="video">
+      <div class="thumb"><span class="badge-soon">無料</span></div>
+      <div class="card-body">
+        <div class="tag-row"><span class="tag">動画編集</span></div>
+        <h3>⑧ 素材リサーチAI</h3>
+        <p>台本から「何秒地点に・何を・どう検索するか」の一覧を作ります。</p>
+        <div class="card-footer"><span>Claude Code / Codex</span><span></span></div>
+      </div>
+    </div>
+
+    <div class="card" data-filter="video">
+      <div class="thumb"><span class="badge-soon">無料</span></div>
+      <div class="card-body">
+        <div class="tag-row"><span class="tag">動画編集</span></div>
+        <h3>⑨ 動画確認AI（納品前チェック）</h3>
+        <p>誤字・表記ゆれ・NGワード・尺テンポ・修正漏れを一覧にします。</p>
+        <div class="card-footer"><span>Claude Code / Codex</span><span></span></div>
+      </div>
+    </div>
+
+    <div class="card" data-filter="ops">
+      <div class="thumb"><span class="badge-soon">無料</span></div>
+      <div class="card-body">
+        <div class="tag-row"><span class="tag">業務効率化</span></div>
+        <h3>⑩ 請求書作成AI</h3>
+        <p>消費税・源泉徴収・支払期日を計算して請求書HTMLを出します。</p>
+        <div class="card-footer"><span>Claude Code / Codex</span><span></span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <section id="setup" class="setup">
+    <div class="eyebrow">SETUP GUIDE</div>
+    <h2>入れ方（5分）</h2>
+    <ol class="setup-steps">
+      <li><strong>Claude Code を入れる</strong><br>まだの方は先にインストールしてください。Windowsの方は Git for Windows（Git Bash）も一緒に入ります。</li>
+      <li><strong>スキルを置く</strong><br>ダウンロードしたフォルダの中身（<code>aim-</code> で始まる10個のフォルダ）を <code>~/.claude/skills/</code> にまるごとコピーします。</li>
+      <li><strong>Claude Code を再起動する</strong><br>起動中に入れても読み込まれません。一度終了してから開き直してください。</li>
+      <li><strong>動くか確かめる</strong><br>Claude Code に「営業文を書きたい」と話しかけてみてください。セットアップが始まれば成功です。</li>
+    </ol>
+    <a href="https://raw.githubusercontent.com/AIM-Ryu/SKILLS/main/skills.zip" id="download-link" class="hero-download">スキル一式を無料ダウンロード ↓</a>
+    <p class="setup-note">スキル本体は無料です。利用にはClaude CodeまたはCodexの環境が必要で、接続先サービスの利用料が別途かかる場合があります。</p>
+  </section>
+</main>
+
+<footer>© AIM_りゅうすけ SKILLS</footer>
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const cards = document.querySelectorAll('.card');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const filter = tab.dataset.filter;
+      cards.forEach(card => {
+        card.style.display = (filter === 'all' || card.dataset.filter === filter) ? '' : 'none';
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
