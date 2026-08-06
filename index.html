@@ -154,14 +154,30 @@
     background:
       repeating-linear-gradient(135deg, #16204a 0 12px, #101836 12px 24px);
     position:relative;
-    display:flex;
-    align-items:flex-start;
-    justify-content:flex-start;
+    overflow:hidden;
+  }
+  .thumb img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .thumb::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, rgba(10,15,38,.55) 0%, rgba(10,15,38,.05) 45%, rgba(10,15,38,.15) 100%);
+    pointer-events:none;
   }
   .badge-soon{
-    margin:12px;
-    background:var(--soon-bg);
-    color:var(--soon-text);
+    position:absolute;
+    top:12px;
+    left:12px;
+    z-index:2;
+    background:rgba(10,15,38,.72);
+    color:var(--accent-2);
     font-size:10px;
     font-weight:700;
     letter-spacing:.06em;
@@ -197,6 +213,14 @@
     line-height:1.7;
     color:var(--sub);
     flex:1;
+  }
+  .card .oneliner{
+    margin:0;
+    font-size:12.5px;
+    font-weight:700;
+    color:var(--accent);
+    flex:none;
+    line-height:1.5;
   }
   .card-footer{
     display:flex;
@@ -250,9 +274,106 @@
     font-size:12px;
     color:var(--sub);
   }
+
+  .card-download{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    margin-top:4px;
+    padding:9px 12px;
+    border-radius:8px;
+    background:rgba(224,184,76,0.12);
+    border:1px solid var(--card-border);
+    color:var(--accent);
+    font-size:12px;
+    font-weight:700;
+  }
+  .card-download:hover{ background:rgba(224,184,76,0.22); border-color:var(--accent); }
+
+  body.locked{ overflow:hidden; }
+
+  #gate{
+    position:fixed;
+    inset:0;
+    background:var(--bg);
+    z-index:1000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+  }
+  #gate.hidden{ display:none; }
+  .gate-box{
+    max-width:360px;
+    width:100%;
+    background:var(--card);
+    border:1px solid var(--card-border);
+    border-radius:16px;
+    padding:36px 28px;
+    text-align:center;
+  }
+  .gate-box .logo-mark{
+    width:40px;height:40px;border-radius:50%;
+    background:var(--accent);color:var(--bg);
+    display:flex;align-items:center;justify-content:center;
+    font-size:18px;font-weight:900;
+    margin:0 auto 16px;
+  }
+  .gate-box h2{
+    font-size:18px;
+    margin:0 0 8px;
+  }
+  .gate-box p{
+    font-size:12.5px;
+    color:var(--sub);
+    margin:0 0 20px;
+    line-height:1.7;
+  }
+  .gate-box input{
+    width:100%;
+    padding:12px 14px;
+    border-radius:8px;
+    border:1px solid var(--card-border);
+    background:var(--bg);
+    color:var(--ink);
+    font-size:14px;
+    margin-bottom:12px;
+    box-sizing:border-box;
+    text-align:center;
+  }
+  .gate-box button{
+    width:100%;
+    padding:12px 14px;
+    border-radius:999px;
+    border:none;
+    background:var(--accent);
+    color:var(--bg);
+    font-weight:700;
+    font-size:14px;
+    cursor:pointer;
+  }
+  .gate-box button:hover{ background:var(--accent-2); }
+  .gate-error{
+    color:#e0716c;
+    font-size:12px;
+    margin-top:10px;
+    min-height:16px;
+  }
 </style>
 </head>
-<body>
+<body class="locked">
+
+<div id="gate">
+  <div class="gate-box">
+    <div class="logo-mark">A</div>
+    <h2>AIM_りゅうすけ SKILLS</h2>
+    <p>このページは関係者限定で公開しています。<br>パスワードを入力してください。</p>
+    <input type="password" id="gate-input" placeholder="パスワード" autocomplete="off">
+    <button id="gate-submit">開く</button>
+    <div class="gate-error" id="gate-error"></div>
+  </div>
+</div>
 
 <header>
   <div class="logo">
@@ -285,101 +406,121 @@
   <div class="grid" id="grid">
 
     <div class="card" data-filter="sales">
-      <div class="thumb"><span class="badge-soon">無料</span></div>
+      <div class="thumb"><img src="https://images.pexels.com/photos/8872191/pexels-photo-8872191.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" loading="lazy"><span class="badge-soon">無料</span></div>
       <div class="card-body">
         <div class="tag-row"><span class="tag">営業・提案</span></div>
         <h3>① 営業リサーチAI</h3>
-        <p>URL 1本渡すと、営業に必要な情報と「攻め方3案」が出ます。</p>
+        <p class="oneliner">URL1本で営業先を丸裸にする</p>
+        <p>企業やYouTubeチャンネルのURL、または名前だけで営業先を調査します。事業内容・SNS運用状況・編集傾向・課題の仮説を「事実」と「推測」に分けて整理し、営業の切り口を3案提示。結果は次の②営業文AIにそのまま引き継げます。</p>
+        <a class="card-download" href="https://raw.githubusercontent.com/AIM-Ryu/SKILLS/main/skills/aim-client-research.zip" download>↓ このスキルだけダウンロード</a>
         <div class="card-footer"><span>Claude Code / Codex</span><span></span></div>
       </div>
     </div>
 
     <div class="card" data-filter="sales">
-      <div class="thumb"><span class="badge-soon">無料</span></div>
+      <div class="thumb"><img src="https://images.pexels.com/photos/7662061/pexels-photo-7662061.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" loading="lazy"><span class="badge-soon">無料</span></div>
       <div class="card-body">
         <div class="tag-row"><span class="tag">営業・提案</span></div>
         <h3>② 営業文たたき台AI</h3>
-        <p>実績と単価を毎回貼らなくていい。添削もできます。</p>
+        <p class="oneliner">コピペで送れる営業文が即完成</p>
+        <p>自分の実績・単価をあらかじめ登録しておけば、募集文を渡すだけでそのまま送れる営業文を作成します。新規作成・添削・応募すべきか判断、の3モードに対応。NGパターン17項目で自己検査してから提示します。</p>
+        <a class="card-download" href="https://raw.githubusercontent.com/AIM-Ryu/SKILLS/main/skills/aim-sales-message.zip" download>↓ このスキルだけダウンロード</a>
         <div class="card-footer"><span>Claude Code / Codex</span><span></span></div>
       </div>
     </div>
 
     <div class="card" data-filter="sales">
-      <div class="thumb"><span class="badge-soon">無料</span></div>
+      <div class="thumb"><img src="https://images.pexels.com/photos/9034283/pexels-photo-9034283.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" loading="lazy"><span class="badge-soon">無料</span></div>
       <div class="card-body">
         <div class="tag-row"><span class="tag">営業・提案</span></div>
         <h3>③ 営業資料作成AI</h3>
-        <p>ポートフォリオと提案資料をHTMLで作ります。実績ゼロでも作れます。</p>
+        <p class="oneliner">実績ゼロでも作れる営業資料</p>
+        <p>自己紹介・実績一覧のポートフォリオと、案件ごとの提案資料をHTML1枚で作成します。ブラウザでそのままPDF化・URL共有が可能。実績がなくても「制作物」として見せる構成に切り替えて対応します。</p>
+        <a class="card-download" href="https://raw.githubusercontent.com/AIM-Ryu/SKILLS/main/skills/aim-sales-deck.zip" download>↓ このスキルだけダウンロード</a>
         <div class="card-footer"><span>Claude Code / Codex</span><span></span></div>
       </div>
     </div>
 
     <div class="card" data-filter="sales">
-      <div class="thumb"><span class="badge-soon">無料</span></div>
+      <div class="thumb"><img src="https://images.pexels.com/photos/7433853/pexels-photo-7433853.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" loading="lazy"><span class="badge-soon">無料</span></div>
       <div class="card-body">
         <div class="tag-row"><span class="tag">営業・提案</span></div>
         <h3>④ 商談準備・議事録AI</h3>
-        <p>聞くことリスト → 議事録 → 送る確認メールまで作ります。</p>
+        <p class="oneliner">商談の前後をまるごとサポート</p>
+        <p>商談前は聞くべき質問と想定問答・地雷サインを準備。商談後はメモや文字起こしから議事録を作り、聞けなかったことを自動で洗い出して、そのまま送れる確認メールまで作成します。</p>
+        <a class="card-download" href="https://raw.githubusercontent.com/AIM-Ryu/SKILLS/main/skills/aim-meeting.zip" download>↓ このスキルだけダウンロード</a>
         <div class="card-footer"><span>Claude Code / Codex</span><span></span></div>
       </div>
     </div>
 
     <div class="card" data-filter="ops">
-      <div class="thumb"><span class="badge-soon">無料</span></div>
+      <div class="thumb"><img src="https://images.pexels.com/photos/8293635/pexels-photo-8293635.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" loading="lazy"><span class="badge-soon">無料</span></div>
       <div class="card-body">
         <div class="tag-row"><span class="tag">業務効率化</span></div>
         <h3>⑤ 案件要件整理AI</h3>
-        <p>決まっていない条件を洗い出して、確認文を1通にまとめます。</p>
+        <p class="oneliner">決まってない条件を全部洗い出す</p>
+        <p>商談メモやDMから、納期・仕様・お金など36項目を確定/未確定/リスクに機械的に振り分けます。未確定項目は放置した時のリスクを添え、クライアントへの確認文を1通にまとめて提示します。</p>
+        <a class="card-download" href="https://raw.githubusercontent.com/AIM-Ryu/SKILLS/main/skills/aim-project-brief.zip" download>↓ このスキルだけダウンロード</a>
         <div class="card-footer"><span>Claude Code / Codex</span><span></span></div>
       </div>
     </div>
 
     <div class="card" data-filter="schedule">
-      <div class="thumb"><span class="badge-soon">無料</span></div>
+      <div class="thumb"><img src="https://images.pexels.com/photos/273153/pexels-photo-273153.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" loading="lazy"><span class="badge-soon">無料</span></div>
       <div class="card-body">
         <div class="tag-row"><span class="tag">スケジュール管理</span></div>
         <h3>⑥ 納期管理AI</h3>
-        <p>納品日から逆算して、カレンダーに入れられる形にします。</p>
+        <p class="oneliner">納期から逆算しカレンダー化</p>
+        <p>納品日から素材受取・初稿・確認・修正・最終納品まで逆算してスケジュールを組みます。カレンダーに取り込める.icsファイルも作成。複数案件の納期重複やキャパオーバーも警告します。</p>
+        <a class="card-download" href="https://raw.githubusercontent.com/AIM-Ryu/SKILLS/main/skills/aim-schedule.zip" download>↓ このスキルだけダウンロード</a>
         <div class="card-footer"><span>Claude Code / Codex</span><span></span></div>
       </div>
     </div>
 
     <div class="card" data-filter="ops">
-      <div class="thumb"><span class="badge-soon">無料</span></div>
+      <div class="thumb"><img src="https://images.pexels.com/photos/7414277/pexels-photo-7414277.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" loading="lazy"><span class="badge-soon">無料</span></div>
       <div class="card-body">
         <div class="tag-row"><span class="tag">業務効率化</span></div>
         <h3>⑦ フォルダ整理AI</h3>
-        <p>散らかった素材を案件フォルダに分類・命名します。</p>
+        <p class="oneliner">散らかった素材を安全に整理</p>
+        <p>ダウンロードフォルダに溜まった素材を、動画・音源・画像などに分類し命名を統一。動かす前に必ず一覧表で提案し、OKが出てから実行する2段階方式です。削除は行わず、元に戻せるログも残します。</p>
+        <a class="card-download" href="https://raw.githubusercontent.com/AIM-Ryu/SKILLS/main/skills/aim-file-organizer.zip" download>↓ このスキルだけダウンロード</a>
         <div class="card-footer"><span>Claude Code / Codex</span><span></span></div>
       </div>
     </div>
 
     <div class="card" data-filter="video">
-      <div class="thumb"><span class="badge-soon">無料</span></div>
+      <div class="thumb"><img src="https://images.pexels.com/photos/10024703/pexels-photo-10024703.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" loading="lazy"><span class="badge-soon">無料</span></div>
       <div class="card-body">
         <div class="tag-row"><span class="tag">動画編集</span></div>
         <h3>⑧ 素材リサーチAI</h3>
-        <p>台本から「何秒地点に・何を・どう検索するか」の一覧を作ります。</p>
+        <p class="oneliner">台本から素材の検索リストを作成</p>
+        <p>台本や文字起こしから、どこに何の素材を入れるかをセリフ引用で特定し、日本語と英語の検索ワード・推奨サイトを一覧化します。検索しても出てこない図解は「自作リスト」として分けて出します。</p>
+        <a class="card-download" href="https://raw.githubusercontent.com/AIM-Ryu/SKILLS/main/skills/aim-asset-research.zip" download>↓ このスキルだけダウンロード</a>
         <div class="card-footer"><span>Claude Code / Codex</span><span></span></div>
       </div>
     </div>
 
     <div class="card" data-filter="video">
-      <div class="thumb"><span class="badge-soon">無料</span></div>
+      <div class="thumb"><img src="https://images.pexels.com/photos/31718971/pexels-photo-31718971.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" loading="lazy"><span class="badge-soon">無料</span></div>
       <div class="card-body">
         <div class="tag-row"><span class="tag">動画編集</span></div>
         <h3>⑨ 動画確認AI（納品前チェック）</h3>
-        <p>誤字・表記ゆれ・NGワード・尺テンポ・修正漏れを一覧にします。</p>
+        <p class="oneliner">納品前の誤字・修正漏れを一掃</p>
+        <p>テロップを誤字脱字・表記ゆれ・NGワード・尺テンポ・CTA漏れなど6項目でチェックします。クライアントの修正指示との突合で「直し忘れ」も検出し、タイムコード付きの修正リストにまとめます。</p>
+        <a class="card-download" href="https://raw.githubusercontent.com/AIM-Ryu/SKILLS/main/skills/aim-video-check.zip" download>↓ このスキルだけダウンロード</a>
         <div class="card-footer"><span>Claude Code / Codex</span><span></span></div>
       </div>
     </div>
 
     <div class="card" data-filter="ops">
-      <div class="thumb"><span class="badge-soon">無料</span></div>
+      <div class="thumb"><img src="https://images.pexels.com/photos/38783385/pexels-photo-38783385.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" loading="lazy"><span class="badge-soon">無料</span></div>
       <div class="card-body">
         <div class="tag-row"><span class="tag">業務効率化</span></div>
         <h3>⑩ 請求書作成AI</h3>
-        <p>消費税・源泉徴収・支払期日を計算して請求書HTMLを出します。</p>
+        <p class="oneliner">単価も源泉徴収も自動で計算</p>
+        <p>要件定義から単価・支払いサイト・源泉徴収を読み取り、消費税や差引請求額を計算して請求書HTML/Markdownを作成します。支払期日の自動計算、入金管理、未入金の督促文面まで対応します。</p>
+        <a class="card-download" href="https://raw.githubusercontent.com/AIM-Ryu/SKILLS/main/skills/aim-invoice.zip" download>↓ このスキルだけダウンロード</a>
         <div class="card-footer"><span>Claude Code / Codex</span><span></span></div>
       </div>
     </div>
@@ -415,6 +556,45 @@
       });
     });
   });
+</script>
+
+<script>
+  // --- パスワードゲート ---
+  // 注意：これは静的サイト上の簡易ゲートです。ページのソースやURLを直接見れば
+  // 突破できてしまうため、完全な非公開機能ではありません。
+  (function(){
+    const PASSWORD = "AIM12345";
+    const STORAGE_KEY = "aim_skills_unlocked";
+    const gate = document.getElementById('gate');
+    const input = document.getElementById('gate-input');
+    const submit = document.getElementById('gate-submit');
+    const error = document.getElementById('gate-error');
+    const body = document.body;
+
+    function unlock(){
+      gate.classList.add('hidden');
+      body.classList.remove('locked');
+    }
+
+    if (localStorage.getItem(STORAGE_KEY) === "1") {
+      unlock();
+    }
+
+    function tryUnlock(){
+      if (input.value === PASSWORD) {
+        localStorage.setItem(STORAGE_KEY, "1");
+        error.textContent = "";
+        unlock();
+      } else {
+        error.textContent = "パスワードが違います";
+      }
+    }
+
+    submit.addEventListener('click', tryUnlock);
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') tryUnlock();
+    });
+  })();
 </script>
 
 </body>
